@@ -1,0 +1,27 @@
+<h1><%= @customer.name %></h1>
+
+<div>
+  <% @customer.comments.each do |comment| %>
+    <p><%= comment.user.username %> says: <%= comment.content %></p>
+  <% end %>
+</div>
+
+<div>
+  <form action="" method="">
+    <label for="content">Comment: </label>
+    <input type="text" id="content" name="content">
+    <input type="hidden" name="customer_id" value="<%= @customer.id %>"
+    <input type="submit" value="Add Comment">
+  </form>
+</div>
+
+<div>
+  <form action="/customers/<%= @customer.id %>/edit" method="get">
+    <input type="submit" value="Edit <%= @customer.name %>">
+  </form>
+
+  <form action="/customers/<%= @customer.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete <%= @customer.name %>">
+  </form>
+</div>

@@ -1,0 +1,18 @@
+<div>
+  <% @customers.each do |customer| %>
+    <div>
+      <p> 
+        <a href="customers/<%= customer.id %>"><%= customer.name %></a>
+      </p>
+      <img src="" alt="picture of <%= customer.name%>">
+      <form action="/users/:id" method="post">
+        <input type="hidden" name="_method" value="post">
+        <button>Add Customer</button>
+      </form>
+      <form action="/users/:id" method="post">
+        <input type="hidden" name="_method" value="post">
+        <button>Add a Comment</button>
+      </form>
+    </div>
+  <% end %>
+</div>

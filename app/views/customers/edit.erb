@@ -1,0 +1,8 @@
+<h1>Edit <%= @customer.name %></h1>
+
+<form action="/customers/<%= @customer.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="name">First Name:</label><br>
+  <input type="text" name="customer[name]" value=" <%= @customer.name %>"><br>
+  <input type="submit" value="Update">
+</form>
