@@ -11,6 +11,11 @@
       <a href="/customers/new">Sign Up</a> |
       <a href="/customers/new">Sign In</a>
     </nav>
+    <% if @errors %>
+      <% @errors.each do |error| %>
+        <%= error %>
+      <% end %>
+    <% end %>
       <%= yield %>
   </body>
 </html>

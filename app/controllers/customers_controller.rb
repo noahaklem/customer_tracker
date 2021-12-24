@@ -13,13 +13,18 @@ class CustomersController < ApplicationController
 
   post "/customers" do
     customer = Customer.create(params)
-    redirect "/customers/#{customer.id}"
+    if customer.valid?
+      redirect "/customers/#{customer.id}"
+    else 
+      @errors = customer.errors.full_messages
+      erb :"customers/new"
+    end
   end
 
   #Show
   get "/customers/:id" do
-    @customer = Customer.find(params[:id])
     # binding.pry
+    @customer = Customer.find(params[:id])
     erb :"customers/show"
   end
 
@@ -31,10 +36,13 @@ class CustomersController < ApplicationController
 
   #Update
   patch "/customers/:id" do
+    # binding.pry
     @customer = Customer.find(params[:id])
     @customer.update(params['customer'])
     redirect "/customers/#{@customer.id}" 
   end
+
+ 
 
   #Delete
   delete "/customers/:id" do
