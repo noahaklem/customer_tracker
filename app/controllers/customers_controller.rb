@@ -2,6 +2,7 @@ class CustomersController < ApplicationController
 
   #Index
   get "/customers" do
+    # binding.pry
     @customers = Customer.all 
     erb :"customers/index"
   end

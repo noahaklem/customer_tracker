@@ -1,5 +1,7 @@
 
 <h1><%= @customer.name %></h1>
+  <a href="/customers/<%= @customer.id %>/edit"> Edit Customer</a>
+  <a href="/customers/<%= @customer.id %>">Delete Customer </a><br>
 
 <div>
   <% @customer.comments.each do |comment| %>
@@ -8,21 +10,11 @@
 </div>
 
 <div>
-  <form action="" method="">
-    <label for="content">Comment: </label>
+  <form action="/comments" method="POST">
+    <label for="content">Make a New Comment: </label><br>
     <input type="text" id="content" name="content">
-    <input type="hidden" name="customer_id" value="<%= @customer.id %>"
+    <input type="hidden" name="customer_id" value="<%= @customer.id %>">
+    <input type="hidden" name="user_id" value="<%= session[:user_id] %>">
     <input type="submit" value="Add Comment">
-  </form>
-</div>
-
-<div>
-  <form action="/customers/<%= @customer.id %>/edit" method="get">
-    <input type="submit" value="Edit <%= @customer.name %>">
-  </form>
-
-  <form action="/customers/<%= @customer.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete <%= @customer.name %>">
   </form>
 </div>

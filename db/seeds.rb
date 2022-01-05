@@ -5,8 +5,11 @@
   })
 end
 
-spongebob = User.find_or_create_by(username: "Spongebob")
+3.times do
+  User.create(username: Faker::Name.unique.name, password: "test")
+end
 
-customer = Customer.all.first
-customer.comments.create(content: "heck yeah!", user: spongebob)
-customer.comments.create(content: "heres one for you!", user: spongebob)
+10.times do 
+  Comment.create( content: Faker::ChuckNorris.fact, customer: Customer.all.sample, user: User.all.sample )
+end
+puts "seeds completed"

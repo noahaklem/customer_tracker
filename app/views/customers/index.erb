@@ -1,17 +1,9 @@
 <div>
   <% @customers.each do |customer| %>
     <div>
-      <p> 
-        <a href="customers/<%= customer.id %>"><%= customer.name %></a>
-      </p>
-      
-      <form action="/users/:id" method="post">
-        <input type="hidden" name="_method" value="post">
-        <button>Add Customer</button>
-      </form>
-      <form action="/users/:id" method="post">
-        <input type="hidden" name="_method" value="post">
-        <button>Add a Comment</button>
+      <p> <%= customer.name %> </p>
+      <form action="customers/<%= customer.id %>" method="get">
+        <button type="submit">Go To Customer</button>
       </form>
     </div>
   <% end %>
