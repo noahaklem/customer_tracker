@@ -8,13 +8,11 @@ class CommentsController < ApplicationController
     
     comment = Comment.new(params)
     if comment.save
-      binding.pry
       redirect "customers/#{comment.customer.id}"
     else
       redirect "customers/#{params[:customer_id]}"
     end
   end
-
 
 #Show
 
