@@ -23,3 +23,5 @@ gem "sinatra", "~> 2.1"
 gem "bcrypt", "~> 3.1"
 
 gem "dotenv", "~> 2.7"
+
+gem "thin", "~> 1.8"

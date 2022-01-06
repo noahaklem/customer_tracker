@@ -1,0 +1,10 @@
+<h1>Your Customers</h1>
+
+<% @user.customers.uniq.each do |customer| %>
+  <div>
+    <%= customer.name %>
+    <form action="/customers/<%= customer.id %>" method="GET">
+      <button type="submit">Go To Customer</button>
+    </form>
+  </div>
+<% end %>

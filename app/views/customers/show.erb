@@ -14,7 +14,7 @@
     <label for="content">Make a New Comment: </label><br>
     <input type="text" id="content" name="content">
     <input type="hidden" name="customer_id" value="<%= @customer.id %>">
-    <input type="hidden" name="user_id" value="<%= session[:user_id] %>">
+    <input type="hidden" name="user_id" value="<%= @user.id %>">
     <input type="submit" value="Add Comment">
   </form>
 </div>

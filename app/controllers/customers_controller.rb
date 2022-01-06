@@ -2,19 +2,20 @@ class CustomersController < ApplicationController
 
   #Index
   get "/customers" do
-    # binding.pry
     @customers = Customer.all 
     erb :"customers/index"
   end
 
   #New
   get "/customers/new" do
+    @user = User.find(session[:user_id])
     erb :"customers/new"
   end
 
   post "/customers" do
     customer = Customer.create(params)
     if customer.valid?
+      @user = User.find(session[:user_id])
       redirect "/customers/#{customer.id}"
     else 
       @errors = customer.errors.full_messages
@@ -24,8 +25,8 @@ class CustomersController < ApplicationController
 
   #Show
   get "/customers/:id" do
-    # binding.pry
     @customer = Customer.find(params[:id])
+    @user = User.find(session[:user_id])
     erb :"customers/show"
   end
 
@@ -37,7 +38,6 @@ class CustomersController < ApplicationController
 
   #Update
   patch "/customers/:id" do
-    # binding.pry
     @customer = Customer.find(params[:id])
     @customer.update(params['customer'])
     redirect "/customers/#{@customer.id}" 

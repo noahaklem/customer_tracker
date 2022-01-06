@@ -5,9 +5,10 @@ class CommentsController < ApplicationController
 
 #Create
   post "/comments" do
-    # binding.pry
+    
     comment = Comment.new(params)
-    if comment.user_id != nil
+    if comment.save
+      binding.pry
       redirect "customers/#{comment.customer.id}"
     else
       redirect "customers/#{params[:customer_id]}"

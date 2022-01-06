@@ -7,7 +7,10 @@ class UsersController < ApplicationController
 #Create
 
 #Show
-
+  get '/users/:id/customers' do 
+    @user = User.find(params[:id])
+    erb :"users/show"
+  end
 #Delete
 
 #Edit
