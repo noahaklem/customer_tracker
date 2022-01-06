@@ -5,21 +5,11 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :sessions_secret, ENV["SESSION_SECRET"]
+    register Sinatra::Flash
   end
 
   get "/" do
     redirect "/login"
-  end
-
-  get "/signup" do
-    erb :"signup/signup"
-  end
-
-  post "/signup" do
-    @user = User.new(params[:user])
-    @user.save
-    session[:user_id] = @user.id
-    redirect "/users/#{@user.id}/customers"
   end
 
   helpers do 

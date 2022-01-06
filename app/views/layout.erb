@@ -5,8 +5,8 @@
   </head>
   <body>
     
-  <% if current_user %>
-    <h1>Welcome <%= @user.username.capitalize %></h1>
+  <% if logged_in? %>
+    <h1>Welcome <%= current_user.username.capitalize %></h1>
       <nav>
         <a href="/customers">See All Customers</a> |
         <a href="/users/<%= @user.id %>/customers">See My Customers</a> |
@@ -17,6 +17,9 @@
       <h1>Welcome to Customer Tracker</h1>
       <h2><a href="/login">Log In</a> or <a href="/signup">Sign Up</a></h2>
   <% end %>
+    <% flash.keys.each do |error|%>
+      <p><%= flash[error] %></p>
+    <% end %> 
       <%= yield %>
   </body>
 </html>

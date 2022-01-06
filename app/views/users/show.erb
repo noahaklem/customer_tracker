@@ -2,9 +2,9 @@
 
 <% @user.customers.uniq.each do |customer| %>
   <div>
-    <%= customer.name %>
+    <%= customer.name %><br>
     <form action="/customers/<%= customer.id %>" method="GET">
       <button type="submit">Go To Customer</button>
     </form>
-  </div>
+  </div><br>
 <% end %>

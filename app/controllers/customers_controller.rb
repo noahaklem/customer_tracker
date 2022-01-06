@@ -2,14 +2,25 @@ class CustomersController < ApplicationController
 
   #Index
   get "/customers" do
-    @customers = Customer.all 
-    erb :"customers/index"
+    if logged_in?
+      @user = User.find(session[:user_id])
+      @customers = Customer.all 
+      erb :"customers/index"
+    else
+      flash[:notice] = "You need to be logged in to view this. Please login."
+      redirect "/login"
+    end
   end
 
   #New
   get "/customers/new" do
-    @user = User.find(session[:user_id])
-    erb :"customers/new"
+    if logged_in?
+      @user = User.find(session[:user_id])
+      erb :"customers/new"
+    else
+      flash[:notice] = "You need to be logged in to view this. Please login."
+      redirect "/login"
+    end
   end
 
   post "/customers" do
@@ -18,22 +29,31 @@ class CustomersController < ApplicationController
       @user = User.find(session[:user_id])
       redirect "/customers/#{customer.id}"
     else 
-      @errors = customer.errors.full_messages
       erb :"customers/new"
     end
   end
 
   #Show
   get "/customers/:id" do
-    @customer = Customer.find(params[:id])
-    @user = User.find(session[:user_id])
-    erb :"customers/show"
+    if logged_in?
+      @customer = Customer.find(params[:id])
+      @user = User.find(session[:user_id])
+      erb :"customers/show"
+    else
+      flash[:notice] = "You need to be logged in to view this. Please login."
+      redirect "/login"
+    end
   end
 
   #Edit
   get "/customers/:id/edit" do
-    @customer = Customer.find(params[:id])
-    erb :"customers/edit"
+    if logged_in?
+      @customer = Customer.find(params[:id])
+      erb :"customers/edit"
+    else
+      flash[:notice] = "You need to be logged in to view this. Please login."
+      redirect "/login"
+    end
   end
 
   #Update

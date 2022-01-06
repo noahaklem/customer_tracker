@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
 
 #Create
   post "/comments" do
-    
     comment = Comment.new(params)
     if comment.save
       redirect "customers/#{comment.customer.id}"
